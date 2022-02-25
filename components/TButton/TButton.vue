@@ -1,5 +1,5 @@
 <template>
-  <button :type="type" :disabled="disabled" :class="classs">
+  <button :type="type" :disabled="disabled" :class="classs" @click="callback($event)">
     <slot />
   </button>
 </template>
@@ -44,8 +44,13 @@ export default {
             default: false
         }
     },
+    methods: {
+        callback: function (e : any) {
+            this.$emit('click', e)
+        }
+    },
     computed: {
-        classs() {
+        classs(): any {
             return {
                 'tada-button': true,
                 [this.color]: true,
